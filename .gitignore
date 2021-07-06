@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/src/main/res/values/config.xml
+/app/src/main/java/codes/adityaa/chatapp/core/SkylinkServicesJava.java
