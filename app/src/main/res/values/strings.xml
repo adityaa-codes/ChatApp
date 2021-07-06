@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Chat App</string>
+    <string name="peer_placeholder">Peer ID</string>
+    <string name="message_placeholder">Hi Aditya This Side</string>
+    <string name="timestamp_placeholder">4:04 PM</string>
+    <string name="refresh">Refresh</string>
+</resources>
