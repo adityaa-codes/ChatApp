@@ -1,9 +1,9 @@
 package codes.adityaa.chatapp.core
 
-import a.a.a.a.a.a.p0
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import codes.adityaa.chatapp.data.enums.MessageType
 import codes.adityaa.chatapp.ui.ChatActivity
 import org.json.JSONArray
@@ -46,6 +46,8 @@ class SkylinkService(
         }
         Log.d(TAG, "initSkylinkConnection:LocalPeerIDAfterRoomConnect $localPeerID")
         Log.d(TAG, "initSkylinkConnection:RoomName ${skylinkConnection?.roomId}")
+        //setEncryptedMap()
+        Log.d(TAG, "onConnectToRoomSuccessful: ${skylinkConnection?.selectedSecretId}")
 
         //getStoredMessagesLocal()
     }
@@ -197,7 +199,7 @@ class SkylinkService(
                 onConnectToRoomFailed(contextDescription)
             }
         })
-
+        Log.d(TAG, "initSkylinkConnection:${skylinkConnection?.selectedSecretId} ")
         skylinkConnection?.lifeCycleListener = this
         skylinkConnection?.remotePeerListener = this
         skylinkConnection?.osListener = this
@@ -207,7 +209,7 @@ class SkylinkService(
 
     }
 
-    fun connectToRoom(ROOM_NAME: String) {
+    fun connectToRoom(ROOM_NAME: String,encryptionKey:String,encryptionValue: String) {
         val MY_USER_NAME = "adityaa"
 
         skylinkConnection?.connectToRoom(
@@ -219,8 +221,11 @@ class SkylinkService(
 
                 }
             })
+        setEncryptedMap(encryptionKey,encryptionValue)
+        Log.d(TAG, "connectToRoom:${skylinkConnection?.selectedSecretId} ")
 
         //Log.d(TAG, "connectToRoom: " + skylinkConnection?.localPeerId)
+
 
     }
 
@@ -247,15 +252,30 @@ class SkylinkService(
         return localPeerID
     }
 
+//    fun getStoredMessagesLocal() {
+//        if (skylinkConnection != null) {
+//            skylinkConnection?.getStoredMessages(object : SkylinkCallback.StoredMessages {
+//                override fun onObtainStoredMessages(
+//                    messages: JSONArray?,
+//                    p1: MutableMap<SkylinkError, JSONArray>?
+//                ) {
+//                    Log.d(TAG, "onObtainStoredMessages:$messages ")
+//                    Log.d(TAG, "onObtainStoredMessages:$p1 ")
+//                }
+//            })
+//        }
+//    }
     fun getStoredMessagesLocal() {
         if (skylinkConnection != null) {
             skylinkConnection?.getStoredMessages(object : SkylinkCallback.StoredMessages {
                 override fun onObtainStoredMessages(
-                    messages: JSONArray,
-                    p1: MutableMap<SkylinkError, JSONArray>
+                    messages: JSONArray?,
+                    p1: MutableMap<SkylinkError?, JSONArray?>?
                 ) {
                     Log.d(TAG, "onObtainStoredMessages:$messages ")
                     Log.d(TAG, "onObtainStoredMessages:$p1 ")
+                    Toast.makeText(context, messages.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, p1.toString(), Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -327,13 +347,13 @@ class SkylinkService(
         }
     }
 
-    fun setEncryptedMap(encryptionKey: String, encryptionValue: String) {
+    private fun setEncryptedMap(encryptionKey:String, encryptionValue: String) {
         val encryptionMap: MutableMap<String?, String?> = HashMap()
         encryptionMap[encryptionKey] = encryptionValue
-        Log.d(TAG, "setEncryptedMap: $encryptionKey - $encryptionValue")
+        //Log.d(TAG, "setEncryptedMap: $encryptionKey - $encryptionValue")
         skylinkConnection?.isMessagePersist = true
         skylinkConnection?.setEncryptSecretsMap(encryptionMap)
-        skylinkConnection?.selectedSecretId = encryptionKey
+        skylinkConnection?.selectedSecretId = encryptionMap[encryptionKey]
 
     }
 

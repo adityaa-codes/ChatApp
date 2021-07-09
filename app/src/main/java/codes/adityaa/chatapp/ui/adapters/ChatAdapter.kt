@@ -1,6 +1,5 @@
 package codes.adityaa.chatapp.ui.adapters
 
-import android.icu.text.RelativeDateTimeFormatter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,9 +47,9 @@ class ChatAdapter(
 
     inner class LocalMessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var messageContent: TextView = itemView.findViewById(R.id.localMessageTV)
-        var peerID: TextView = itemView.findViewById(R.id.localPeerIDTV)
-        var timeStamp: TextView = itemView.findViewById(R.id.localTimestampTV)
+        var messageContent: TextView = itemView.findViewById(R.id.remoteMessageTV)
+        var peerID: TextView = itemView.findViewById(R.id.remotePeerIDTV)
+        var timeStamp: TextView = itemView.findViewById(R.id.remoteTimestampTV)
 
         fun bind(position: Int){
             val currentItem = messageArrayList[position]

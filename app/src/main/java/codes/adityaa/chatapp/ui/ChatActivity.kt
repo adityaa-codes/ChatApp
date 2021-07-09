@@ -47,12 +47,6 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //viewModel = ViewModelProvider(this, factory).get(ChatViewModel::class.java)
-        initComponents()
-
-
-    }
-
-    private fun initComponents() {
         showProgressBar(true)
         networkAware = NetworkManager(this)
         chatConfig = ChatConfigImpl()
@@ -68,8 +62,7 @@ class ChatActivity : AppCompatActivity() {
         }
         title = roomName
         skylinkService.initSkylinkConnection()
-        skylinkService.setEncryptedMap(encryptionKey,encryptionValue)
-        skylinkService.connectToRoom(roomName)
+        skylinkService.connectToRoom(roomName,encryptionKey,encryptionValue)
 
         chatMessageArrayList = ArrayList()
         chatMessageArrayList.clear()
@@ -113,8 +106,8 @@ class ChatActivity : AppCompatActivity() {
         val messageModel = ChatMessage(
             message,
             localPeerId,
-            date2DayTime(Date(timeStamp)),
-            //getDefaultShortTimeStamp(),
+            //date2DayTime(Date(timeStamp)),
+            getDefaultShortTimeStamp(Date(timeStamp)),
             userName,
             messageRowType
         )

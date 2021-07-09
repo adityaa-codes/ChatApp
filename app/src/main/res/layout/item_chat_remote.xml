@@ -10,30 +10,40 @@
     <TextView
         android:id="@+id/remotePeerIDTV"
         style="@style/TextAppearance.MaterialComponents.Caption"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="4dp"
         android:text="@string/peer_placeholder"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/limit"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
+
+
+
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/shape_triangle"
+        app:layout_constraintEnd_toStartOf="@+id/remoteMessageCV"
+        app:layout_constraintTop_toTopOf="@+id/remoteMessageCV" />
+
+
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/remoteMessageCV"
-        style="@style/Widget.MaterialComponents.CardView"
-        android:layout_width="match_parent"
+        style="@style/CustomCardCorners"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:backgroundTint="#5C94BC"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        app:cardCornerRadius="32dp"
+        app:cardBackgroundColor="#5C94BC"
+        app:cardElevation="0dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/limit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/remotePeerIDTV">
 
@@ -41,40 +51,42 @@
             android:id="@+id/remoteMessageCL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="16dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="8dp">
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="4dp">
 
 
             <TextView
                 android:id="@+id/remoteMessageTV"
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:textColor="#000000"
+                android:layout_marginTop="4dp"
+                android:layout_weight="0.7"
                 android:text="@string/message_placeholder"
-                app:layout_constraintEnd_toStartOf="@+id/remoteTimestampTV"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/remoteTimestampTV"
                 style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_weight="0.3"
                 android:text="@string/timestamp_placeholder"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/remoteMessageTV"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
 </androidx.constraintlayout.widget.ConstraintLayout>

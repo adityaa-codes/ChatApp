@@ -3,52 +3,49 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
     <TextView
-        android:id="@+id/localPeerIDTV"
+        android:id="@+id/remotePeerIDTV"
         style="@style/TextAppearance.MaterialComponents.Caption"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:text="@string/peer_placeholder"
         android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/limit"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/limit"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:src="@drawable/shape_triangle"
-        app:layout_constraintEnd_toStartOf="@+id/localMessageCV"
-        app:layout_constraintTop_toTopOf="@+id/localMessageCV" />
+        android:src="@drawable/shape_triangle_left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/remoteMessageCV" />
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/localMessageCV"
-        style="@style/CustomCardCorners"
+        android:id="@+id/remoteMessageCV"
+        style="@style/CustomCardCornersLocalChat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         app:cardBackgroundColor="#94EC94"
         app:cardElevation="0dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/limit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/localPeerIDTV">
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/limit"
+        app:layout_constraintTop_toBottomOf="@+id/remotePeerIDTV">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/localMessageCL"
+            android:id="@+id/remoteMessageCL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="8dp"
@@ -58,7 +55,7 @@
 
 
             <TextView
-                android:id="@+id/localMessageTV"
+                android:id="@+id/remoteMessageTV"
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +66,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/localTimestampTV"
+                android:id="@+id/remoteTimestampTV"
                 style="@style/TextAppearance.MaterialComponents.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,5 +85,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

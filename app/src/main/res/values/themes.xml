@@ -26,5 +26,16 @@
         <item name="cornerSizeBottomLeft">8dp</item>
         <item name="cornerSizeTopLeft">0dp</item>
     </style>
+    <style name="CustomCardCornersLocalChat" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance_custom_corners_local</item>
+    </style>
+
+    <style name="ShapeAppearance_custom_corners_local" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+    </style>
 
 </resources>
