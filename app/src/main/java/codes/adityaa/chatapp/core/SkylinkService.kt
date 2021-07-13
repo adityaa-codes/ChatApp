@@ -47,7 +47,10 @@ class SkylinkService(
         Log.d(TAG, "initSkylinkConnection:LocalPeerIDAfterRoomConnect $localPeerID")
         Log.d(TAG, "initSkylinkConnection:RoomName ${skylinkConnection?.roomId}")
         //setEncryptedMap()
+
+        skylinkConnection?.selectedSecretId = "room_eleven"
         Log.d(TAG, "onConnectToRoomSuccessful: ${skylinkConnection?.selectedSecretId}")
+        Log.d(TAG, "onConnectToRoomSuccessfulPersist: ${skylinkConnection?.isMessagePersist}")
 
         //getStoredMessagesLocal()
     }
@@ -272,7 +275,7 @@ class SkylinkService(
                     messages: JSONArray?,
                     p1: MutableMap<SkylinkError?, JSONArray?>?
                 ) {
-                    Log.d(TAG, "onObtainStoredMessages:$messages ")
+                    Log.d(TAG, "onObtainStoredMessages:$messages")
                     Log.d(TAG, "onObtainStoredMessages:$p1 ")
                     Toast.makeText(context, messages.toString(), Toast.LENGTH_SHORT).show()
                     Toast.makeText(context, p1.toString(), Toast.LENGTH_SHORT).show()
@@ -349,11 +352,13 @@ class SkylinkService(
 
     private fun setEncryptedMap(encryptionKey:String, encryptionValue: String) {
         val encryptionMap: MutableMap<String?, String?> = HashMap()
-        encryptionMap[encryptionKey] = encryptionValue
+        encryptionMap["room_ten"] = "LetsDooItt"
+        encryptionMap["room_eleven"] = "shouldWork"
+        encryptionMap["room_twelve"] = "bangaloreCity"
         //Log.d(TAG, "setEncryptedMap: $encryptionKey - $encryptionValue")
         skylinkConnection?.isMessagePersist = true
         skylinkConnection?.setEncryptSecretsMap(encryptionMap)
-        skylinkConnection?.selectedSecretId = encryptionMap[encryptionKey]
+        //  skylinkConnection?.selectedSecretId = encryptionMap["room_ten"]
 
     }
 

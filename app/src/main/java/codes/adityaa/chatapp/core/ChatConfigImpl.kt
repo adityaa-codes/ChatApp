@@ -6,9 +6,8 @@ class ChatConfigImpl : ChatConfig {
     override fun getSkylinkConfig(): SkylinkConfig {
         val skylinkConfig = SkylinkConfig()
 
-        skylinkConfig.skylinkRoomSize = SkylinkConfig.SkylinkRoomSize.SMALL
         skylinkConfig.preferredSocketTransport = SkylinkConfig.SocketTransport.WEBSOCKET
-        skylinkConfig.networkTransport = SkylinkConfig.NetworkTransport.UDP
+        skylinkConfig.networkTransport = SkylinkConfig.NetworkTransport.TCP
         skylinkConfig.setP2PMessaging(false)
         skylinkConfig.setFileTransfer(false)
         skylinkConfig.setDataTransfer(false)
@@ -35,9 +34,6 @@ class ChatConfigImpl : ChatConfig {
         skylinkConfig.setMultitrackCreateEnable(true);
         skylinkConfig.reconnectAttempts = -1
         skylinkConfig.reconnectionDelay = 1000
-
-
-
 
         skylinkConfig.setAudioVideoSendConfig(SkylinkConfig.AudioVideoConfig.NO_AUDIO_NO_VIDEO)
         skylinkConfig.setAudioVideoReceiveConfig(SkylinkConfig.AudioVideoConfig.NO_AUDIO_NO_VIDEO)
